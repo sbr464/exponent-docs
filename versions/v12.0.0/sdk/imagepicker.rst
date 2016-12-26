@@ -42,6 +42,15 @@ library or taking a photo with the camera.
         aspect ratio to maintain if the user is allowed to edit the image (by
         passing ``allowsEditing: true``). This is only applicable
         on Android, since on iOS the crop rectangle is always a square.
+      
+      * **quality** (*number*) -- Default is 0.1. A number between 0 and 1, 
+        with 0 being lower quality and 1 being higher quality. 
+        Example file sizes of a photo taken with an iPhone 7,
+        as general guidance:
+            *1.0* - 5Mb
+            *0.5* - 800kb
+            *0.1* - 300kb
+            *0.0* - 250kb
 
    :returns:
       If the user cancelled taking a photo, returns ``{ cancelled: true }``.
@@ -91,7 +100,8 @@ Example: pick from camera roll
     _pickImage = async () => {
       let result = await Exponent.ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
-        aspect: [4,3]
+        aspect: [4,3],
+        quality: .5
       });
 
       console.log(result);
